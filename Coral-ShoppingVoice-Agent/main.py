@@ -320,7 +320,15 @@ async def entrypoint(ctx: JobContext):
     query_string = urllib.parse.urlencode(params)
     MCP_SERVER_URL = f"{base_url}?{query_string}"
 
-    product_catalog = "Laptop: $1200, Mouse: $25, Keyboard: $75, Monitor: $300"
+    # The product catalog now explicitly lists both **new** and **used** (refurbished) variants so
+    # the voice-assistant can help customers purchase either condition. Feel free to extend or
+    # modify these entries via environment variables or future code updates.
+    product_catalog = (
+        "Laptop (new): $1200, Laptop (used): $800, "
+        "Mouse (new): $25, Mouse (used): $15, "
+        "Keyboard (new): $75, Keyboard (used): $50, "
+        "Monitor (new): $300, Monitor (used): $200"
+    )
     userdata = UserData()
     userdata.agents.update(
         {
