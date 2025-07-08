@@ -1,9 +1,12 @@
 import { AccessToken, AccessTokenOptions, VideoGrant } from "livekit-server-sdk";
 import { NextResponse } from "next/server";
 
-const API_KEY = process.env.LIVEKIT_SHOPPING_API_KEY;
-const API_SECRET = process.env.LIVEKIT_SHOPPING_API_SECRET;
-const LIVEKIT_URL = process.env.LIVEKIT_SHOPPING_URL;
+// Attempt to read shopping-specific LiveKit credentials first. If they are not
+// provided fall back to the generic LIVEKIT_* variables so the shopping voice
+// assistant can still function without requiring a second set of env vars.
+const API_KEY = process.env.LIVEKIT_SHOPPING_API_KEY ?? process.env.LIVEKIT_API_KEY;
+const API_SECRET = process.env.LIVEKIT_SHOPPING_API_SECRET ?? process.env.LIVEKIT_API_SECRET;
+const LIVEKIT_URL = process.env.LIVEKIT_SHOPPING_URL ?? process.env.LIVEKIT_URL;
 
 export const revalidate = 0;
 
